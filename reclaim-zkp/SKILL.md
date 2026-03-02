@@ -1,7 +1,8 @@
 ---
 name: reclaim-zkp
-description: Integrate Reclaim Protocol ZKP verification into an existing app
+description: Integrate Reclaim Protocol ZKP verification into an existing app. Collects credentials, installs SDK, wires up verification flow and proof parsing into a target file.
 user_invocable: true
+allowed-tools: [Read, Edit, Write, Glob, Grep, Bash]
 ---
 
 # Reclaim ZKP Integration
