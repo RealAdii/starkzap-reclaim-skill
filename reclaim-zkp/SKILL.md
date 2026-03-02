@@ -84,7 +84,11 @@ async function startVerification() {
   const reclaimRequest = await ReclaimProofRequest.init(
     APP_ID,
     APP_SECRET,
-    PROVIDER_ID
+    PROVIDER_ID,
+    {
+      useAppClip: false,
+      customSharePageUrl: 'https://portal.reclaimprotocol.org/popcorn'
+    }
   )
 
   const requestUrl = await reclaimRequest.getRequestUrl()
