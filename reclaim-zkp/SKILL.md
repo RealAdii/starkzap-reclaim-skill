@@ -108,8 +108,11 @@ async function startVerification() {
 }
 
 function parseProof(proofs) {
-  if (!proofs || proofs.length === 0) return {}
-  const proof = proofs[0]
+  if (!proofs) return {}
+
+  // Handle both single proof object and array of proofs
+  const proof = Array.isArray(proofs) ? proofs[0] : proofs
+  if (!proof) return {}
 
   if (proof.extractedParameterValues) {
     return typeof proof.extractedParameterValues === 'string'
@@ -130,7 +133,14 @@ function parseProof(proofs) {
       : proof.claimData.parameters
   }
 
-  return {}
+  if (proof.publicData) {
+    return typeof proof.publicData === 'string'
+      ? JSON.parse(proof.publicData)
+      : proof.publicData
+  }
+
+  // Fallback: return the proof itself if it's a plain object
+  return typeof proof === 'object' ? proof : {}
 }
 ```
 
